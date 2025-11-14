@@ -3,11 +3,17 @@ const bodyParser = require('body-parser');
 const connectDB = require('./config/db');
 const routes = require('./api/routes/index');
 const dotenv = require('dotenv')
+const cors = require('cors');
 
 const app = express();
 app.use(bodyParser.json());
 require('dotenv').config();
 
+app.use(cors({
+  origin: "*",
+  methods: "GET,POST,PUT,DELETE",
+  allowedHeaders: "Content-Type,Authorization"
+}));
 
 // Função principal
 async function startServer() {
