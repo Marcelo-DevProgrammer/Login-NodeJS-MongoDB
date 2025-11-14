@@ -6,14 +6,16 @@ const dotenv = require('dotenv')
 const cors = require('cors');
 
 const app = express();
+
+app.use(cors({
+  origin: ["http://localhost:3000", "https://login-node-js-mongo-db.vercel.app"],
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true
+}));
+
 app.use(bodyParser.json());
 require('dotenv').config();
 
-app.use(cors({
-  origin: "http://localhost:3000",
-  methods: "GET,POST,PUT,DELETE",
-  credentials: true
-}));
 
 // Função principal
 async function startServer() {
