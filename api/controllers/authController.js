@@ -4,6 +4,13 @@ const User = require('../models/userModel');
 
 // Login
 const login = async (req, res) => {
+  res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
+  res.setHeader("Access-Control-Allow-Methods", "GET,POST,OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+
+  if (req.method === "OPTIONS") {
+    return res.status(200).end();
+  }
   try {
     const user = await User.findOne({ email: req.body.email });
     if (!user) return res.status(401).json({ error: 'Credenciais inválidas' });
@@ -20,6 +27,13 @@ const login = async (req, res) => {
 
 // Buscar dados do usuário autenticado
 const getUserData = async (req, res) => {
+  res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
+  res.setHeader("Access-Control-Allow-Methods", "GET,POST,OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+
+  if (req.method === "OPTIONS") {
+    return res.status(200).end();
+  }
   try {
     const { email } = req.query; // pega da URL
 
